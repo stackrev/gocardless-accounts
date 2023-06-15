@@ -1,0 +1,6 @@
+[
+  {'bank': 'Revolut', 'status': 'booked', 'transactionId': '6482255b-fee7-a481-8acc-e49278d4be6e', 'bookingDate': '2023-06-09', 'valueDate': '2023-06-08', 'bookingDateTime': '2023-06-09T05: 02: 01.873101Z', 'valueDateTime': '2023-06-08T19: 00: 43.876722Z', 'transactionAmount': {'amount': '-15.00', 'currency': 'EUR'
+    }, 'creditorName': 'R.e.t. N.v.', 'remittanceInformationUnstructuredArray': ['R.e.t. N.v.'
+    ], 'proprietaryBankTransactionCode': 'CARD_PAYMENT', 'internalTransactionId': '463b80c11cf0000724922323f268fa0e'
+  },
+  {'bank': 'Revolut', 'status': 'booked', 'transactionId': '6482025c-b9eb-a698-8d37-eea696c0dfae', 'bookingDate': '2023-06-09', 'valueDate': '2023-06-08', 'bookingDateTime': '2023-06-09T05: 01: 19.403639Z', 'valueDateTime': '2023-06-08T16: 31: 24.431684Z', 'transactionAmount': {'

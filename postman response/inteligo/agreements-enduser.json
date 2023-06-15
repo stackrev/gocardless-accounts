@@ -1,1 +1,1 @@
-{"id":"33ec1c72-bdf5-44b8-ba77-9770c170e079","created":"2023-06-12T17:02:35.380292Z","institution_id":"INTELIGO_BPKOPLPW","max_historical_days":90,"access_valid_for_days":90,"access_scope":["balances","details","transactions"],"accepted":null}
+{"id":"da2ef96b-4396-4880-bc25-238d71595017","created":"2023-06-15T12:23:03.624632Z","institution_id":"INTELIGO_BPKOPLPW","max_historical_days":730,"access_valid_for_days":90,"access_scope":["balances","details","transactions"],"accepted":null}
