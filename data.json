@@ -1,0 +1,5 @@
+{
+  "currencyExchange": {'instructedAmount': {'amount': '27.53', 'currency': 'PLN'
+    }, 'sourceCurrency': 'PLN', 'exchangeRate': '0.22163078367', 'unitCurrency': 'PLN', 'targetCurrency': 'EUR'
+  }
+}
