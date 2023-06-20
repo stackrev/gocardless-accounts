@@ -38,7 +38,7 @@ accounts = [
     },
     {
         "institution": "Inteligo",
-        "id": "3f6b95a6-32ee-4fc6-a9f6-86f336751f56",
+        "id": "e71eca26-1857-4a87-9071-1568dc13002d"
     },
     {
         "institution": "Inteligo",
@@ -46,11 +46,11 @@ accounts = [
     },
     {
         "institution": "Inteligo",
-        "id": "e71eca26-1857-4a87-9071-1568dc13002d"
-    }
+        "id": "3f6b95a6-32ee-4fc6-a9f6-86f336751f56",
+    },
 ]
 for account in accounts:
-  conn.request("GET", f"/api/v2/accounts/{account['id']}/transactions/?date_from=2000-01-01&date_to=2023-06-14", payload, headers)
+  conn.request("GET", f"/api/v2/accounts/{account['id']}/transactions/?date_from=2020-01-01&date_to=2023-06-19", payload, headers)
   res = conn.getresponse()
   data = res.read()
 
@@ -61,6 +61,21 @@ for account in accounts:
       transaction_id = booked_transaction["transactionId"]
       booked_transaction['accountId'] = account['id']
       booked_transaction['institution'] = account['institution']
+      temp_booked_transaction = booked_transaction['transactionAmount']
+      booked_transaction['transactionAmount'] = temp_booked_transaction['amount']
+      booked_transaction['transactionCurrency'] = temp_booked_transaction['currency']
+      if 'remittanceInformationUnstructuredArray' in booked_transaction:
+        booked_transaction['remittanceInformationUnstructuredArray'] = ' '.join(booked_transaction['remittanceInformationUnstructuredArray'])[1:-1]
+      if 'currencyExchange' in booked_transaction:
+        temp_currency_exchange = booked_transaction['currencyExchange']
+        booked_transaction['instructedAmount'] = temp_currency_exchange['instructedAmount']['amount']
+        booked_transaction['instructedCurrency'] = temp_currency_exchange['instructedAmount']['currency']
+        booked_transaction['sourceCurrency'] = temp_currency_exchange['sourceCurrency']
+        booked_transaction['exchangeRate'] = temp_currency_exchange['exchangeRate']
+        booked_transaction['unitCurrency'] = temp_currency_exchange['unitCurrency']
+        booked_transaction['exchangeRate'] = temp_currency_exchange['exchangeRate']
+        booked_transaction['targetCurrency'] = temp_currency_exchange['targetCurrency']
+        booked_transaction.pop('currencyExchange')
       booked_transaction['status'] = "booked"
       all_transactions.append(booked_transaction)
 
@@ -69,6 +84,20 @@ for account in accounts:
       transaction_id = booked_transaction["transactionId"]
       booked_transaction['accountId'] = account['id']
       booked_transaction['institution'] = account['institution']
+      temp_booked_transaction = booked_transaction['transactionAmount']
+      booked_transaction['transactionAmount'] = temp_booked_transaction['amount']
+      booked_transaction['transactionCurrency'] = temp_booked_transaction['currency']
+      booked_transaction['remittanceInformationUnstructuredArray'] = ' '.join(booked_transaction['remittanceInformationUnstructuredArray'])[1:-1]
+      if 'currencyExchange' in booked_transaction:
+        temp_currency_exchange = booked_transaction['currencyExchange']
+        booked_transaction['instructedAmount'] = temp_currency_exchange['instructedAmount']['amount']
+        booked_transaction['instructedCurrency'] = temp_currency_exchange['instructedAmount']['currency']
+        booked_transaction['sourceCurrency'] = temp_currency_exchange['sourceCurrency']
+        booked_transaction['exchangeRate'] = temp_currency_exchange['exchangeRate']
+        booked_transaction['unitCurrency'] = temp_currency_exchange['unitCurrency']
+        booked_transaction['exchangeRate'] = temp_currency_exchange['exchangeRate']
+        booked_transaction['targetCurrency'] = temp_currency_exchange['targetCurrency']
+        booked_transaction.pop('currencyExchange')
       booked_transaction['status'] = "pending"
       all_transactions.append(booked_transaction)
   print(f"obtaining for {account['id']} is done")
